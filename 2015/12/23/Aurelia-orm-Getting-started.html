@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Aurelia orm - Getting started</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="//RWOverdijk.github.io/themes/Casper/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//RWOverdijk.github.io/themes/Casper/assets/css/screen.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html" />
+    
+    <meta property="og:site_name" content="RWOverdijk - Code and stuff" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Aurelia orm - Getting started" />
+    <meta property="og:description" content="Getting started In this document, we&amp;#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm. Prerequisites For this guide, we assume you have the aurelia skeleton set up. We&amp;#8217;ll also assume you have node and..." />
+    <meta property="og:url" content="https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html" />
+    <meta property="article:published_time" content="2015-12-22T23:00:00.000Z" />
+    <meta property="article:modified_time" content="2015-12-23T14:36:52.084Z" />
+    <meta property="article:tag" content="javascript" />
+    <meta property="article:tag" content="aurelia" />
+    <meta property="article:tag" content="framework" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Aurelia orm - Getting started" />
+    <meta name="twitter:description" content="Getting started In this document, we&amp;#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm. Prerequisites For this guide, we assume you have the aurelia skeleton set up. We&amp;#8217;ll also assume you have node and..." />
+    <meta name="twitter:url" content="https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "RWOverdijk - Code and stuff",
+    "author": {
+        "@type": "Person",
+        "name": "Wesley Overdijk",
+        "image": "https://avatars.githubusercontent.com/u/781745?v=3",
+        "url": "undefined/author/undefined",
+        "sameAs": "http://blog.spoonx.nl"
+    },
+    "headline": "Aurelia orm - Getting started",
+    "url": "https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html",
+    "datePublished": "2015-12-22T23:00:00.000Z",
+    "dateModified": "2015-12-23T14:36:52.084Z",
+    "keywords": "javascript,  aurelia,  framework",
+    "description": "Getting started In this document, we&amp;#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm. Prerequisites For this guide, we assume you have the aurelia skeleton set up. We&amp;#8217;ll also assume you have node and..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="RWOverdijk - Code and stuff" href="https://RWOverdijk.github.io/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+</head>
+<body class="post-template tag-javascript tag-aurelia tag-framework">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="https://RWOverdijk.github.io">Home</a>
+        <!-- <a class="subscribe-button icon-feed" href="https://RWOverdijk.github.io/rss/">Subscribe</a> -->
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-javascript tag-aurelia tag-framework">
+
+        <header class="post-header">
+            <h1 class="post-title">Aurelia orm - Getting started</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-12-23">23 December 2015</time>  on <a href="https://RWOverdijk.github.io/tag/javascript">javascript</a>, <a href="https://RWOverdijk.github.io/tag/aurelia"> aurelia</a>, <a href="https://RWOverdijk.github.io/tag/framework"> framework</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <h1 id="_getting_started" class="sect0">Getting started</h1>
+<div class="paragraph">
+<p>In this document, we&#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm.</p>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this guide, we assume you have the <a href="https://github.com/aurelia/skeleton-navigation">aurelia skeleton</a> set up.
+We&#8217;ll also assume you have <a href="https://nodejs.org/en/">node</a> and <a href="https://www.npmjs.com/">npm</a> installed, and that you&#8217;re familiar with <a href="https://docs.npmjs.com/">installing modules</a>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, we&#8217;ll assume that you have jspm.io[jspm] installed. If you don&#8217;t, run <code>npm i -g jspm</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_usage">Basic usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The getting started guide will focus on the easiest use cases imaginable. We&#8217;ll replace the standard functionality provided by the skeleton with aurelia-orm.</p>
+</div>
+<div class="sect2">
+<h3 id="_installing_aurelia_orm">Installing aurelia-orm</h3>
+<div class="paragraph">
+<p>We&#8217;ll start off by installing aurelia-orm. Head over to your terminal of choice, and navigate to your skeleton.
+Now run the following command:</p>
+</div>
+<div class="paragraph">
+<p><code>jspm i github:spoonx/aurelia-orm github:spoonx/aurelia-api</code></p>
+</div>
+<div class="paragraph">
+<p>This will install aurelia-orm and <a href="https://github.com/SpoonX/aurelia-api">aurelia-api</a>. Aurelia-orm uses <a href="https://github.com/SpoonX/aurelia-api">aurelia-api</a> to talk to the server. By default, it will communicate with the domain it&#8217;s being used on. Seeing how for this guide we&#8217;ll be doing cross-domain communication, we&#8217;ll have to configure it, and thus we installed it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_but_first">But first&#8230;&#8203;</h3>
+<div class="paragraph">
+<p>Cool, the orm has been installed&#8230;&#8203; But now we want it to <em>do</em> something, right? Head on over to your favorite editor, open up the project and open file <code>src/users.js</code>.</p>
+</div>
+<div class="paragraph">
+<p>As you can see, it&#8217;s using <code>aurelia-fetch-client</code> to do the API calls to <code><a href="https://api.github.com/" class="bare">https://api.github.com/</a></code>. We&#8217;re going to change that, and make use of aurelia-orm.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration">Configuration</h3>
+<div class="paragraph">
+<p>This is the boring part. Head back to your editor and open up <code>src/main.js</code>. Configure aurelia-api to use <code><a href="https://api.github.com/" class="bare">https://api.github.com/</a></code> as the base url for our calls.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">import 'bootstrap';
+
+export function configure(aurelia) {
+  aurelia.use
+    .standardConfiguration()
+    .developmentLogging()
+
+    // Load the plugin, and set the base url.
+    .plugin('spoonx/aurelia-api', builder =&gt; {
+      builder.useStandardConfiguration().withBaseUrl('https://api.github.com/');
+    });
+
+  aurelia.start().then(a =&gt; a.setRoot());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All we&#8217;re doing here, is telling aurelia to register aurelia-api as a plugin, and configuring aurelia-api with a baseUrl.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_it">Use it</h3>
+<div class="paragraph">
+<p>Now head back to <code>src/users.js</code>. Change the file to look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">import {inject} from 'aurelia-framework';
+import {EntityManager} from 'spoonx/aurelia-orm';
+import 'fetch';
+
+@inject(EntityManager)
+export class Users {
+  heading = 'Github Users';
+  users = [];
+
+  constructor(entityManager) {
+    this.usersRepository = entityManager.getRepository('users');
+  }
+
+  activate() {
+    return this.usersRepository.find()
+      .then(users =&gt; this.users = users);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s what we&#8217;ve changed. We&#8217;ve:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Swapped out <code>HttpClient</code> with <code>EntityManager</code>, in both the import and inject.</p>
+</li>
+<li>
+<p>Completely removed the config calls in the constructor. (We added that in <code>src/main.js</code> earlier).</p>
+</li>
+<li>
+<p>Assigned something called a repository to <code>usersRepository</code> on the viewModel, by asking the <code>EntityManager</code> to give us one.</p>
+</li>
+<li>
+<p>Changed <code>this.http.fetch('users')</code> to <code>this.usersRepository.find()</code>. Notice that we removed the <code>.json()</code> step, too.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>And done! We&#8217;ve now successfully swapped auth aurelia-fetch-client with <code>aurelia-orm</code>.</p>
+</div>
+<div class="paragraph">
+<p>Head back to your terminal, run <code>gulp watch</code> and open the project in your browser. Now, when you navigate to <a href="http://localhost:9000/#/users" class="bare">http://localhost:9000/#/users</a>, you&#8217;ll notice that absolutely nothing has changed; which was the point of this getting started.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_customize_it">Customize it</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What we&#8217;ve done here, is familiarize ourselves with the way to set this module up. There&#8217;s a lot more this module can do to make talking to restful api&#8217;s more comfortable (and organized).</p>
+</div>
+<div class="sect2">
+<h3 id="_registering_entities">Registering entities</h3>
+<div class="paragraph">
+<p>So far, we&#8217;ve only used a default entity, default repository, and only the .find() method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">import 'bootstrap';
+import entityConfig from 'config/entities';
+
+export function configure(aurelia) {
+  aurelia.use
+    .standardConfiguration()
+    .developmentLogging()
+
+    // Register the plugin, and set the base url.
+    .plugin('spoonx/aurelia-api', builder =&gt; {
+      builder.useStandardConfiguration().withBaseUrl('https://api.github.com/');
+    })
+
+    // Register the plugin, and register our entities.
+    .plugin('spoonx/aurelia-orm', builder =&gt; {
+      builder.registerEntities(entityConfig);
+    });
+
+  aurelia.start().then(a =&gt; a.setRoot());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s what your <code>config/entities.js</code> file might look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">import User from 'entity/user';
+import Article from 'entity/article';
+import Category from 'entity/category';
+
+export default [
+  User,
+  Article,
+  Category
+];</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What this does, is tell the <code>EntityManager</code> that you have built entities for your own resources.</p>
+</div>
+<div class="paragraph">
+<p>To give you an idea, here&#8217;s what the article entity might look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">import {Entity, validatedResource, association} from 'spoonx/aurelia-orm';
+import {ensure} from 'aurelia-validation';
+
+@validatedResource()
+export default class Article extends Entity {
+  @ensure(it =&gt; it.isNotEmpty().hasLengthBetween(3, 20))
+  name = null;
+
+  @ensure(it =&gt; it.isNotEmpty())
+  body = null;
+
+  @association()
+  user = null;
+
+  // Specify the name of the resource: property is called `categories`
+  @association('category')
+  categories = [];
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_it_2">Use it</h3>
+<div class="paragraph">
+<p>We can now get cracking. In any ViewModel, you can now get the desired repository, and start querying. Here&#8217;s an extended example (based on the above code snippets):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">import {EntityManager} from 'spoonx/aurelia-orm';
+import {inject} from 'aurelia-framework';
+
+@inject(EntityManager)
+export class ViewModel {
+  constructor (entityManager) {
+    this.articleRepository = entityManager.getRepository('article');
+    this.newArticle        = entityManager.getEntity('article');
+  }
+
+  attached (params) {
+    // Find all articles that belong to category params.category.
+    this.articleRepository.find({category: params.category})
+      .then(articles =&gt; this.articles = articles);
+  }
+
+  create () {
+    // Validate, and persist entity to the server.
+    this.newArticle.getValidation().validate()
+      .then(result =&gt; {
+        // Validation passed, persist entity.
+        return this.newArticle.save()
+      })
+      .catch(error =&gt; {/* Validation failed */});
+  }
+
+  destroy (index) {
+    this.articles[index].destroy()
+      .then(() =&gt; {
+        // Display a notification?
+      });
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_further_reading">Further reading</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/SpoonX/aurelia-orm/blob/master/doc/decorators.md">Decorators</a></p>
+</li>
+<li>
+<p><a href="https://github.com/SpoonX/aurelia-orm/blob/master/doc/api/entity-manager.md">EntityManager</a></p>
+</li>
+<li>
+<p><a href="https://github.com/SpoonX/aurelia-orm/blob/master/doc/api/repository.md">Repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/SpoonX/aurelia-orm/blob/master/doc/api/entity.md">Entity</a></p>
+</li>
+<li>
+<p><a href="https://github.com/SpoonX/aurelia-orm/blob/master/doc/entities.md">Entities</a></p>
+</li>
+<li>
+<p><a href="https://github.com/SpoonX/aurelia-orm/blob/master/doc/components.md">Components</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To learn more, head on over to <a href="https://github.com/SpoonX/aurelia-orm/tree/master/doc">the <code>doc/</code> directory</a> on github.</p>
+</div>
+<div class="paragraph">
+<p>Happy hacking!</p>
+</div>
+</div>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="" style="background-image: url(https://avatars.githubusercontent.com/u/781745?v=3)"><span class="hidden">Wesley Overdijk's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="">Wesley Overdijk</a></h4>
+
+                    <p>Read <a href="">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Haarlem</span>
+                    <span class="author-link icon-link"><a href="http://blog.spoonx.nl">http://blog.spoonx.nl</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Aurelia%20orm%20-%20Getting%20started&amp;url=https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="https://RWOverdijk.github.io">RWOverdijk - Code and stuff</a> &copy; 2015</section>
+        <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//RWOverdijk.github.io/themes/Casper/assets/js/jquery.fitvids.js?v=1.0.0"></script>
+    <script type="text/javascript" src="//RWOverdijk.github.io/themes/Casper/assets/js/index.js?v=1.0.0"></script>
+
+</body>
+</html>
