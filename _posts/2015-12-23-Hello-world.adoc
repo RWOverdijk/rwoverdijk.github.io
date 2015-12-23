@@ -1,0 +1,6 @@
+# Hello world!
+:hp-tags: general
+
+I always commit to blogging, but I never persevere. But then I thought maybe, if it's not wordpress... I'll be more eager to write stuff. So here's my third attempt at starting something reminiscent of a tech / programming / scripting / I'm bored blog.
+
+Happy coding :)
