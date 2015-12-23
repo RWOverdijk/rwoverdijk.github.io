@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>Aurelia orm - Getting started</title>
     <meta name="description" content="" />
-    <link href="//fonts.googleapis.com/css?family=Noto+Sans:300,400,700" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="//RWOverdijk.github.io/themes/Saga/assets/css/style.css?v=1.0.0" rel="stylesheet" type="text/css">
-    <link href="//RWOverdijk.github.io/themes/Saga/assets/css/animate.min.css?v=1.0.0" rel="stylesheet" type="text/css">
-    <link href="//RWOverdijk.github.io/themes/Saga/favicon.ico" rel="shortcut icon">
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="//RWOverdijk.github.io/themes/ichi/favicon.ico">
+
+    <script type="text/javascript" src="//RWOverdijk.github.io/themes/ichi/assets/js/vendor/fastclick.js?v=1.0.0"></script>
+    <script type="text/javascript" src="//RWOverdijk.github.io/themes/ichi/assets/js/vendor/modernizr.js?v=1.0.0"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="//RWOverdijk.github.io/themes/ichi/assets/css/normalize.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//RWOverdijk.github.io/themes/ichi/assets/css/foundation.min.css?v=1.0.0" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" type="text/css" href="//RWOverdijk.github.io/themes/ichi/assets/css/outdatedBrowser.min.css?v=1.0.0">
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="//RWOverdijk.github.io/themes/ichi/assets/fonts/foundation-icons/foundation-icons.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//RWOverdijk.github.io/themes/ichi/assets/css/styles.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,700,400|Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic" />
+
     <link rel="canonical" href="https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html" />
     
     <meta property="og:site_name" content="RWOverdijk - Code and stuff" />
@@ -22,7 +33,7 @@
     <meta property="og:description" content="Getting started In this document, we&amp;#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm. Prerequisites For this guide, we assume you have the aurelia skeleton set up. We&amp;#8217;ll also assume you have node and..." />
     <meta property="og:url" content="https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html" />
     <meta property="article:published_time" content="2015-12-22T23:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-12-23T16:29:40.264Z" />
+    <meta property="article:modified_time" content="2015-12-23T16:33:13.830Z" />
     <meta property="article:tag" content="javascript" />
     <meta property="article:tag" content="aurelia" />
     <meta property="article:tag" content="framework" />
@@ -47,7 +58,7 @@
     "headline": "Aurelia orm - Getting started",
     "url": "https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html",
     "datePublished": "2015-12-22T23:00:00.000Z",
-    "dateModified": "2015-12-23T16:29:40.264Z",
+    "dateModified": "2015-12-23T16:33:13.830Z",
     "keywords": "javascript,  aurelia,  framework",
     "description": "Getting started In this document, we&amp;#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm. Prerequisites For this guide, we assume you have the aurelia skeleton set up. We&amp;#8217;ll also assume you have node and..."
 }
@@ -58,30 +69,87 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
 </head>
 <body class="post-template tag-javascript tag-aurelia tag-framework">
-    <header id="header" class="animated fadeIn">
-    <div class="header-background">
-    <section class="blog-content">
-        <a id="site-url" class="blog-title" href="https://RWOverdijk.github.io">RWOverdijk - Code and stuff</a>
-        <span class="blog-description"></span>
-        <nav class="links fadeIn animated">
-            <ul>
-                <!-- <li class="rss"><a title="RSS Feed" href="/rss/"><i class="fa fa-fw fa-rss-square"></i></a></li> -->
-        
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdate" href="http://outdatedbrowser.com/">Update my browser now</a></p>
+</div>
+
+<nav class="top-bar hide-for-large-up" data-topbar >
+  <ul class="title-area">
+    <li class="name">
+
+    </li>
+    <li class="home"><a class="fi-home" href="https://RWOverdijk.github.io"></a></li>
+    <li class="toggle-topbar"><a href="#" id="trigger-overlay" class="fi-list"></a></li>
+  </ul>
+
+<div class="overlay overlay-scale">
+    <button type="button" class="overlay-close">Close</button>
+    <nav>
+        <ul>
+            <li><a href="https://RWOverdijk.github.io">Home</a></li>
+        </ul>
+    </nav>
+</div>
+
+</nav>
+
+<div class="row">
+
+<div class="small-16 medium-16 large-4 columns right head-area" >
+
+<header class="site-head">
+    <div class="vertical">
+        <div class="site-head-content inner">
+            <ul class="side-nav blog-menu show-for-large-up">
+                <li><a class="fi-home" href="https://RWOverdijk.github.io"></a></li>
+                <li><a class="fi-torso" href="https://RWOverdijk.github.io/about"></a></li>
+                <li><a class="fi-mail" href="https://RWOverdijk.github.io/contact"></a></li>
             </ul>
-        </nav>
-    </section>
-    <section class="header-content">
-        <h1 class="post-title animated fadeInUp">Aurelia orm - Getting started</h1>
-        <span class="post-data"><span class="date animated fadeInUp"><i class="fa fa-clock-o"></i> <time class="timesince date" data-timesince="1450825200" datetime="2015-12-23T00:00" title="23 December 2015">2015-12-23 00:00:00<ago class="ago"></time></span>
-            <span class="tags animated fadeInUp"><i class="fa fa-tags"></i> <a href="https://RWOverdijk.github.io/tag/javascript">javascript</a>, <a href="https://RWOverdijk.github.io/tag/aurelia"> aurelia</a>, <a href="https://RWOverdijk.github.io/tag/framework"> framework</a></span>
-            <span class="author animated fadeInUp"><i class="fa fa-user"></i> <a href="">Wesley Overdijk</a></span></span>
-    </section>
+            
+            <h1 class="blog-title">RWOverdijk - Code and stuff</h1>
+            <hr>
+            <p class="blog-description"></p>
+            <div class="blog-network">
+<!--                 <a href="#" class="fi-social-pinterest"></a>
+                <a href="#" class="fi-social-linkedin"></a>
+                <a href="#" class="fi-social-behance"></a>
+                <a href="#" class="fi-social-deviant-art"></a>
+                <a href="#" class="fi-social-dribbble"></a>
+                <a href="#" class="fi-social-flickr"></a>
+                <a href="#" class="fi-social-github"></a>
+                <a href="#" class="fi-social-skype"></a>
+                <a href="#" class="fi-social-snapchat"></a>
+                <a href="#" class="fi-social-steam"></a>
+                <a href="#" class="fi-social-xbox"></a>
+                <a href="#" class="fi-social-reddit"></a> -->
+                  <a href="WesleyOverdijk" class="fi-social-google-plus"></a>
+                  <a href="RWOverdijk" class="fi-social-github"></a>
+                  <a href="RWOverdijk" class="fi-social-twitter"></a>
+                  <a href="RWOverdijk" class="fi-social-facebook"></a>
+            </div>
+        </div>
     </div>
 </header>
-<main id="main" class="content">
-    <article itemtype="http://schema.org/BlogPosting" class="animated fadeIn content post post tag-javascript tag-aurelia tag-framework">
-        <section class="post-content">
-            <h1 id="_getting_started" class="sect0">Getting started</h1>
+
+</div>
+
+
+<div class="small-16 medium-16 large-12 columns main-column left">
+    
+
+<main class="content" role="main">
+
+    <article class="post tag-javascript tag-aurelia tag-framework">
+
+
+            <h1 class="post-title">Aurelia orm - Getting started</h1>
+
+            <span class="post-meta label"><time datetime="2015-12-23">23 Dec 2015</time></span>
+
+            <section class="post-content">
+                <h1 id="_getting_started" class="sect0">Getting started</h1>
 <div class="paragraph">
 <p>In this document, we&#8217;ll be modifying the default aurelia navigation skeleton to use aurelia-orm.</p>
 </div>
@@ -363,22 +431,57 @@ export class ViewModel {
 </div>
 </div>
 </div>
-        </section>
+                        <aside class="tags fi-pricetag-multiple">Posted on <a href="https://RWOverdijk.github.io/tag/javascript">javascript</a>, <a href="https://RWOverdijk.github.io/tag/aurelia"> aurelia</a>, <a href="https://RWOverdijk.github.io/tag/framework"> framework</a></aside>
+            </section>
+            <hr>
+            <footer class="post-footer">
+
+                <section class="share">
+                    <h4>Liked this post ? Share it.</h4>
+                    <a class="fi-social-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html"
+                        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    </a>
+                    <a class="fi-social-twitter" href="https://twitter.com/share?text=Aurelia%20orm%20-%20Getting%20started&amp;url=https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html"
+                        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    </a>
+                    <a class="fi-social-google-plus" href="https://plus.google.com/share?url=https://RWOverdijk.github.io/2015/12/23/Aurelia-orm-Getting-started.html"
+                       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    </a>
+                </section>
+
+                <section class="author">
+                    <header>
+                        <span>About the author</span>
+                    </header>
+                    <section>
+                        <h4>Wesley Overdijk</h4>
+                        <img src="https://avatars.githubusercontent.com/u/781745?v=3">
+                        <span>Haarlem</span>
+                        <a href="http://blog.spoonx.nl">http://blog.spoonx.nl</a>
+                    </section>
+                    <footer>
+                         <p></p>
+                    </footer>
+                </section>
+
+        <div class="clearfix"></div>
+                    <hr>
+
+            </footer>
+
+        <h3 class="title-disqus"><span class="fi-comments"></span>Discussions</h3>
+
+
+
 
     </article>
 
 </main>
-    <footer class="animated fadeIn" id="footer">
-        <section class="colophon">
-          <section class="copyright">Copyright &copy; <span itemprop="copyrightHolder">RWOverdijk - Code and stuff</span>. <span rel="license">All Rights Reserved</span>.</section>
-          <section class="poweredby">Published with <a class="icon-ghost" href="http://hubpress.io">HubPress</a></section>
-        </section>
-        <section class="bottom">
-          <section class="attribution">
-            <a href="http://github.com/Reedyn/Saga">Built with <i class="fa fa-heart"></i> and Free and Open-Source Software</a>.
-          </section>
-        </section>
-    </footer>
+
+</div>
+
+</div>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
       <script type="text/javascript">
         jQuery( document ).ready(function() {
@@ -391,7 +494,15 @@ export class ViewModel {
 
         hljs.initHighlightingOnLoad();      
       </script>
-    <script src="//RWOverdijk.github.io/themes/Saga/assets/js/scripts.js?v=1.0.0"></script>
-    
+
+    <!--[if lte IE 8]>
+        <script type="text/javascript" src="//RWOverdijk.github.io/themes/ichi/assets/js/outdatedBrowser.min.js?v=1.0.0"></script>
+    <![endif]-->
+    <script type="text/javascript" src="//RWOverdijk.github.io/themes/ichi/assets/js/min/built.js?v=1.0.0"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+
 </body>
 </html>
